@@ -6,21 +6,22 @@ on:
       - main
 
 jobs:
-  build:
-
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
     - name: Cache pip
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: ~/.cache/pip
         key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
         restore-keys: |
           ${{ runner.os }}-pip-
     - name: Cache PlatformIO
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: ~/.platformio
         key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
@@ -32,5 +33,7 @@ jobs:
         pip install --upgrade platformio
     - name: Install library dependencies
       run: pio lib -g install 1
-    - name: Run PlatformIO
+    - name: Run PlatformIO(Build)
       run: pio run
+    - name: Run PlatformIO(Test)
+      run: pio test -e native -vvv
