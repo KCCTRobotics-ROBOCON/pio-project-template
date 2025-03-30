@@ -4,6 +4,7 @@
     "**/*.pre-commit-config.yaml",
     "**/CPPLINT.cfg",
     "**/.git/**",
+    "**/.github/**",
     "**/.gitignore",
     "**/.vscode/**"
   ],
