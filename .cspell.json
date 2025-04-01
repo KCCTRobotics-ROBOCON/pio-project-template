@@ -6,7 +6,8 @@
     "**/.git/**",
     "**/.github/**",
     "**/.gitignore",
-    "**/.vscode/**"
+    "**/.vscode/**",
+    "**/platformio.ini"
   ],
   "ignoreRegExpList": [
     "Copyright .*[0-9]{4}.+"
